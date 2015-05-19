@@ -1,6 +1,7 @@
 package com.cube.storm.ui.builder;
 
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 
@@ -15,10 +16,54 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * // TODO: Add class description
+ * Entry class for the module.
+ * <br /><br />
+ * This is the class you will be using to build all the views you wish. The class implements a {@link Builder} interface
+ * which defines a standard list of methods that can be used. Each method you call will return a specific
+ * builder that is related to the type of view that you are creating, for instance, calling {@link #list()}
+ * will return an instance of {@link ListBuilder} which will, in turn, have a set of standard methods
+ * that are related to the {@link com.cube.storm.ui.model.list.List} model. Because {@link ListBuilder}
+ * also implements {@link Builder}, the same methods as in this class are available which will break
+ * out of the current context of the {@link ListBuilder} and back into the parent context of the {@link UiBuilder}.
+ * <br /><br />
+ * This allows you to chain your methods in a nice human-readable way that represents loosely the way
+ * it will be rendered on screen.
+ * <br /><br />
+ * Example: <br />
+ * <pre>
+	new UiBuilder()
+		.list("Details")
+			.textListItem("Title Text 1")
+			.textListItem("Title Text 2")
+			.textListItem("Title Text 3")
+		.list("More details")
+			.textListItem("Title Text 4")
+			.textListItem("Title Text 5")
+			.textListItem("Title Text 6")
+		.build((ViewGroup)findViewById(R.id.content));
+ * </pre>
+ *
+ * This will create a view that will look like <br />
+ * <pre>
++-------------+
+|Details      |
++-------------+
+|  Item 1     |
+|  Item 2     |
+|  Item 3     |
+|             |
++-------------+
+|More details |
++-------------+
+|  Item 4     |
+|  Item 5     |
+|  Item 6     |
+|             |
++-------------+
+ * </pre>
  *
  * @author Callum Taylor
- * @project Storm
+ * @project LightningUiBuilder
  */
 public class UiBuilder implements Builder
 {
@@ -34,7 +79,7 @@ public class UiBuilder implements Builder
 		return list(header, null);
 	}
 
-	@Override public ListBuilder list(@Nullable String header, @Nullable  String footer)
+	@Override public ListBuilder list(@Nullable String header, @Nullable String footer)
 	{
 		this.models.add(new com.cube.storm.ui.model.list.List(header, footer));
 		return new ListBuilder(this);
@@ -52,7 +97,7 @@ public class UiBuilder implements Builder
 	 *
 	 * @return the {@param parent} object with the views attached
 	 */
-	@Override public ViewGroup build(ViewGroup parent)
+	@Override public ViewGroup build(@NonNull ViewGroup parent)
 	{
 		StormListAdapter adapter = new StormListAdapter();
 
