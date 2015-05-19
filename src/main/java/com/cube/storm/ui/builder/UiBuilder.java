@@ -8,7 +8,7 @@ import com.cube.storm.UiSettings;
 import com.cube.storm.ui.controller.adapter.StormListAdapter;
 import com.cube.storm.ui.model.Model;
 import com.cube.storm.ui.view.holder.ViewHolder;
-import com.cube.storm.ui.view.holder.ViewHolderController;
+import com.cube.storm.ui.view.holder.ViewHolderFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class UiBuilder implements Builder
 	 */
 	@Override public ViewGroup build(ViewGroup parent)
 	{
-		StormListAdapter adapter = new StormListAdapter(parent.getContext());
+		StormListAdapter adapter = new StormListAdapter();
 
 		for (Model model : models)
 		{
@@ -65,13 +65,13 @@ public class UiBuilder implements Builder
 		for (int i = 0; i < adapter.getItemCount(); i++)
 		{
 			Model model = adapter.getItem(i);
-			Class<? extends ViewHolderController> holderClass = UiSettings.getInstance().getViewFactory().getHolderForView(model.getClassName());
+			Class<? extends ViewHolderFactory> holderClass = UiSettings.getInstance().getViewFactory().getHolderForView(model.getClassName());
 
 			if (holderClass != null)
 			{
 				try
 				{
-					ViewHolderController controller = holderClass.newInstance();
+					ViewHolderFactory controller = holderClass.newInstance();
 					ViewHolder holder = (ViewHolder)controller.createViewHolder(parent);
 					holder.populateView(model);
 
@@ -79,7 +79,7 @@ public class UiBuilder implements Builder
 
 					parent.addView(holder.itemView);
 				}
-				catch (InstantiationException | IllegalAccessException e)
+				catch (Exception e)
 				{
 					e.printStackTrace();
 				}
