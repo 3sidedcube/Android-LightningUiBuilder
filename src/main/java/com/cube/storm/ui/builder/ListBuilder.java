@@ -2,8 +2,10 @@ package com.cube.storm.ui.builder;
 
 import android.support.annotation.NonNull;
 
+import com.cube.storm.ui.builder.view.StandardListItemBuilder;
 import com.cube.storm.ui.builder.view.TextListItemBuilder;
 import com.cube.storm.ui.model.list.ListItem;
+import com.cube.storm.ui.model.list.StandardListItem;
 import com.cube.storm.ui.model.list.TextListItem;
 
 public class ListBuilder extends BuildDelegate
@@ -11,6 +13,17 @@ public class ListBuilder extends BuildDelegate
 	public ListBuilder(Builder parent)
 	{
 		super(parent);
+	}
+
+	public ListBuilder standardListItem(StandardListItemBuilder standardListItemBuilder)
+	{
+		return standardListItem(standardListItemBuilder.build());
+	}
+
+	public ListBuilder standardListItem(StandardListItem standardListItem)
+	{
+		addItem(standardListItem);
+		return this;
 	}
 
 	public ListBuilder textListItem(TextListItemBuilder textListItemBuilder)

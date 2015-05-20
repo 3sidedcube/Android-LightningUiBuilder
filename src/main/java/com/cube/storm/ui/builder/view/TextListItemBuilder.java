@@ -22,7 +22,7 @@ public class TextListItemBuilder
 
 	public TextListItemBuilder description(@NonNull String content)
 	{
-		item.setDescription(new TextProperty().setContent(content));
+		item.setDescription(new TextProperty(content));
 		return this;
 	}
 
