@@ -1,10 +1,11 @@
 package com.cube.storm.ui.builder.view;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.cube.storm.ui.model.list.StandardListItem;
 import com.cube.storm.ui.model.property.BundleImageProperty;
+import com.cube.storm.ui.model.property.InternalLinkProperty;
 import com.cube.storm.ui.model.property.TextProperty;
 
 /**
@@ -22,21 +23,43 @@ public class StandardListItemBuilder
 		item = new StandardListItem();
 	}
 
-	public StandardListItemBuilder title(@NonNull String content)
+	public StandardListItemBuilder title(@Nullable String content)
 	{
-		item.setTitle(new TextProperty(content));
+		if (content != null)
+		{
+			item.setTitle(new TextProperty(content));
+		}
+
 		return this;
 	}
 
-	public StandardListItemBuilder description(@NonNull String content)
+	public StandardListItemBuilder description(@Nullable String content)
 	{
-		item.setDescription(new TextProperty(content));
+		if (content != null)
+		{
+			item.setDescription(new TextProperty(content));
+		}
+
 		return this;
 	}
 
-	public StandardListItemBuilder image(@NonNull Uri uri)
+	public StandardListItemBuilder image(@Nullable Uri uri)
 	{
-		item.setImage(new BundleImageProperty(uri.toString()));
+		if (uri != null)
+		{
+			item.setImage(new BundleImageProperty(uri.toString()));
+		}
+
+		return this;
+	}
+
+	public StandardListItemBuilder link(@Nullable String destination)
+	{
+		if (destination != null)
+		{
+			item.setLink(new InternalLinkProperty().setDestination(destination));
+		}
+
 		return this;
 	}
 
@@ -50,23 +73,40 @@ public class StandardListItemBuilder
 		return new StandardListItemBuilder();
 	}
 
-	public static StandardListItemBuilder create(@NonNull String title)
+	public static StandardListItemBuilder create(@Nullable String title)
 	{
 		return new StandardListItemBuilder().title(title);
 	}
 
-	public static StandardListItemBuilder create(@NonNull String title, @NonNull String description)
+	public static StandardListItemBuilder create(@Nullable String title, @Nullable String description)
 	{
 		return new StandardListItemBuilder()
 					.title(title)
 					.description(description);
 	}
 
-	public static StandardListItemBuilder create(@NonNull String title, @NonNull String description, @NonNull Uri imageUri)
+	public static StandardListItemBuilder create(@Nullable String title, @Nullable String description, @Nullable String linkUri)
+	{
+		return new StandardListItemBuilder()
+					.title(title)
+					.description(description)
+					.link(linkUri);
+	}
+
+	public static StandardListItemBuilder create(@Nullable String title, @Nullable String description, @Nullable Uri imageUri)
 	{
 		return new StandardListItemBuilder()
 					.title(title)
 					.description(description)
 					.image(imageUri);
+	}
+
+	public static StandardListItemBuilder create(@Nullable String title, @Nullable String description, @Nullable Uri imageUri, @Nullable String linkUri)
+	{
+		return new StandardListItemBuilder()
+					.title(title)
+					.description(description)
+					.image(imageUri)
+					.link(linkUri);
 	}
 }
