@@ -2,8 +2,10 @@ package com.cube.storm.ui.builder;
 
 import android.support.annotation.NonNull;
 
+import com.cube.storm.ui.builder.view.ImageListItemBuilder;
 import com.cube.storm.ui.builder.view.StandardListItemBuilder;
 import com.cube.storm.ui.builder.view.TextListItemBuilder;
+import com.cube.storm.ui.model.list.ImageListItem;
 import com.cube.storm.ui.model.list.ListItem;
 import com.cube.storm.ui.model.list.StandardListItem;
 import com.cube.storm.ui.model.list.TextListItem;
@@ -23,6 +25,17 @@ public class ListBuilder extends BuildDelegate
 	public ListBuilder standardListItem(StandardListItem standardListItem)
 	{
 		addItem(standardListItem);
+		return this;
+	}
+
+	public ListBuilder imageListItem(ImageListItemBuilder imageListItemBuilder)
+	{
+		return imageListItem(imageListItemBuilder.build());
+	}
+
+	public ListBuilder imageListItem(ImageListItem imageListItem)
+	{
+		addItem(imageListItem);
 		return this;
 	}
 
