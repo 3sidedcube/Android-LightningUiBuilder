@@ -85,6 +85,21 @@ public class StandardListItemBuilder
 					.description(description);
 	}
 
+	public static StandardListItemBuilder create(@Nullable String title, @Nullable Uri imageUri)
+	{
+		return new StandardListItemBuilder()
+					.title(title)
+					.image(imageUri);
+	}
+
+	public static StandardListItemBuilder create(@Nullable String title, @Nullable Uri imageUri, @Nullable String linkUri)
+	{
+		return new StandardListItemBuilder()
+					.title(title)
+					.image(imageUri)
+					.link(linkUri);
+	}
+
 	public static StandardListItemBuilder create(@Nullable String title, @Nullable String description, @Nullable String linkUri)
 	{
 		return new StandardListItemBuilder()
