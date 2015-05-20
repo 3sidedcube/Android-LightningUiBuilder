@@ -1,6 +1,6 @@
 package com.cube.storm.ui.builder.view;
 
-import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.cube.storm.ui.model.list.TextListItem;
 import com.cube.storm.ui.model.property.TextProperty;
@@ -20,9 +20,13 @@ public class TextListItemBuilder
 		item = new TextListItem();
 	}
 
-	public TextListItemBuilder description(@NonNull String content)
+	public TextListItemBuilder description(@Nullable String content)
 	{
-		item.setDescription(new TextProperty(content));
+		if (content != null)
+		{
+			item.setDescription(new TextProperty(content));
+		}
+
 		return this;
 	}
 
@@ -36,7 +40,7 @@ public class TextListItemBuilder
 		return new TextListItemBuilder();
 	}
 
-	public static TextListItemBuilder create(@NonNull String content)
+	public static TextListItemBuilder create(@Nullable String content)
 	{
 		return new TextListItemBuilder().description(content);
 	}
