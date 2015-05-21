@@ -3,10 +3,12 @@ package com.cube.storm.ui.builder;
 import android.support.annotation.NonNull;
 
 import com.cube.storm.ui.builder.view.ButtonListItemBuilder;
+import com.cube.storm.ui.builder.view.CheckableListItemBuilder;
 import com.cube.storm.ui.builder.view.ImageListItemBuilder;
 import com.cube.storm.ui.builder.view.StandardListItemBuilder;
 import com.cube.storm.ui.builder.view.TextListItemBuilder;
 import com.cube.storm.ui.model.list.ButtonListItem;
+import com.cube.storm.ui.model.list.CheckableListItem;
 import com.cube.storm.ui.model.list.ImageListItem;
 import com.cube.storm.ui.model.list.ListItem;
 import com.cube.storm.ui.model.list.StandardListItem;
@@ -19,47 +21,58 @@ public class ListBuilder extends BuildDelegate
 		super(parent);
 	}
 
-	public ListBuilder standardListItem(StandardListItemBuilder standardListItemBuilder)
+	public ListBuilder standardListItem(StandardListItemBuilder listItemBuilder)
 	{
-		return standardListItem(standardListItemBuilder.build());
+		return standardListItem(listItemBuilder.build());
 	}
 
-	public ListBuilder standardListItem(StandardListItem standardListItem)
+	public ListBuilder standardListItem(StandardListItem listItem)
 	{
-		addItem(standardListItem);
+		addItem(listItem);
 		return this;
 	}
 
-	public ListBuilder imageListItem(ImageListItemBuilder imageListItemBuilder)
+	public ListBuilder imageListItem(ImageListItemBuilder listItemBuilder)
 	{
-		return imageListItem(imageListItemBuilder.build());
+		return imageListItem(listItemBuilder.build());
 	}
 
-	public ListBuilder imageListItem(ImageListItem imageListItem)
+	public ListBuilder imageListItem(ImageListItem listItem)
 	{
-		addItem(imageListItem);
+		addItem(listItem);
 		return this;
 	}
 
-	public ListBuilder buttonListItem(ButtonListItemBuilder buttonListItemBuilder)
+	public ListBuilder buttonListItem(ButtonListItemBuilder listItemBuilder)
 	{
-		return buttonListItem(buttonListItemBuilder.build());
+		return buttonListItem(listItemBuilder.build());
 	}
 
-	public ListBuilder buttonListItem(ButtonListItem buttonListItem)
+	public ListBuilder buttonListItem(ButtonListItem listItem)
 	{
-		addItem(buttonListItem);
+		addItem(listItem);
 		return this;
 	}
 
-	public ListBuilder textListItem(TextListItemBuilder textListItemBuilder)
+	public ListBuilder checkableListItem(CheckableListItemBuilder listItemBuilder)
 	{
-		return textListItem(textListItemBuilder.build());
+		return checkableListItem(listItemBuilder.build());
 	}
 
-	public ListBuilder textListItem(TextListItem textListItem)
+	public ListBuilder checkableListItem(CheckableListItem listItem)
 	{
-		addItem(textListItem);
+		addItem(listItem);
+		return this;
+	}
+
+	public ListBuilder textListItem(TextListItemBuilder listItemBuilder)
+	{
+		return textListItem(listItemBuilder.build());
+	}
+
+	public ListBuilder textListItem(TextListItem listItem)
+	{
+		addItem(listItem);
 		return this;
 	}
 
