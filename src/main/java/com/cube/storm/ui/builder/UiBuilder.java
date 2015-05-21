@@ -1,6 +1,5 @@
 package com.cube.storm.ui.builder;
 
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.ViewGroup;
@@ -107,9 +106,9 @@ public class UiBuilder implements Builder
 		}
 
 		Random rand = new Random();
-		for (int i = 0; i < adapter.getItemCount(); i++)
+		for (int index = 0, count = adapter.getItemCount(); index < count; index++)
 		{
-			Model model = adapter.getItem(i);
+			Model model = adapter.getItem(index);
 			Class<? extends ViewHolderFactory> holderClass = UiSettings.getInstance().getViewFactory().getHolderForView(model.getClassName());
 
 			if (holderClass != null)
@@ -119,8 +118,6 @@ public class UiBuilder implements Builder
 					ViewHolderFactory controller = holderClass.newInstance();
 					ViewHolder holder = (ViewHolder)controller.createViewHolder(parent);
 					holder.populateView(model);
-
-					holder.itemView.setBackgroundColor(Color.argb(255, rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
 
 					parent.addView(holder.itemView);
 				}
