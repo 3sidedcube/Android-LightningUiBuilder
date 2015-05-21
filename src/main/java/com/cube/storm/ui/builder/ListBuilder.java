@@ -5,12 +5,14 @@ import android.support.annotation.NonNull;
 import com.cube.storm.ui.builder.view.ButtonListItemBuilder;
 import com.cube.storm.ui.builder.view.CheckableListItemBuilder;
 import com.cube.storm.ui.builder.view.ImageListItemBuilder;
+import com.cube.storm.ui.builder.view.OrderedListItemBuilder;
 import com.cube.storm.ui.builder.view.StandardListItemBuilder;
 import com.cube.storm.ui.builder.view.TextListItemBuilder;
 import com.cube.storm.ui.model.list.ButtonListItem;
 import com.cube.storm.ui.model.list.CheckableListItem;
 import com.cube.storm.ui.model.list.ImageListItem;
 import com.cube.storm.ui.model.list.ListItem;
+import com.cube.storm.ui.model.list.OrderedListItem;
 import com.cube.storm.ui.model.list.StandardListItem;
 import com.cube.storm.ui.model.list.TextListItem;
 
@@ -60,6 +62,17 @@ public class ListBuilder extends BuildDelegate
 	}
 
 	public ListBuilder checkableListItem(CheckableListItem listItem)
+	{
+		addItem(listItem);
+		return this;
+	}
+
+	public ListBuilder orderedListItem(OrderedListItemBuilder listItemBuilder)
+	{
+		return orderedListItem(listItemBuilder.build());
+	}
+
+	public ListBuilder orderedListItem(OrderedListItem listItem)
 	{
 		addItem(listItem);
 		return this;
