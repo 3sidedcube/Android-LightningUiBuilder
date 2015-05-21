@@ -62,7 +62,9 @@ public class OrderedListItemBuilder
 
 	public static OrderedListItemBuilder create(@Nullable String annotation, @Nullable String title)
 	{
-		return new OrderedListItemBuilder().title(title);
+		return new OrderedListItemBuilder()
+					.annotation(annotation)
+					.title(title);
 	}
 
 	public static OrderedListItemBuilder create(@Nullable String annotation, @Nullable String title, @Nullable String description)

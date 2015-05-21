@@ -9,6 +9,7 @@ import com.cube.storm.ui.builder.view.OrderedListItemBuilder;
 import com.cube.storm.ui.builder.view.StandardListItemBuilder;
 import com.cube.storm.ui.builder.view.TextListItemBuilder;
 import com.cube.storm.ui.builder.view.ToggleableListItemBuilder;
+import com.cube.storm.ui.builder.view.UnorderedListItemBuilder;
 import com.cube.storm.ui.model.list.ButtonListItem;
 import com.cube.storm.ui.model.list.CheckableListItem;
 import com.cube.storm.ui.model.list.ImageListItem;
@@ -17,6 +18,7 @@ import com.cube.storm.ui.model.list.OrderedListItem;
 import com.cube.storm.ui.model.list.StandardListItem;
 import com.cube.storm.ui.model.list.TextListItem;
 import com.cube.storm.ui.model.list.ToggleableListItem;
+import com.cube.storm.ui.model.list.UnorderedListItem;
 
 public class ListBuilder extends BuildDelegate
 {
@@ -75,6 +77,17 @@ public class ListBuilder extends BuildDelegate
 	}
 
 	public ListBuilder orderedListItem(OrderedListItem listItem)
+	{
+		addItem(listItem);
+		return this;
+	}
+
+	public ListBuilder unorderedListItem(UnorderedListItemBuilder listItemBuilder)
+	{
+		return unorderedListItem(listItemBuilder.build());
+	}
+
+	public ListBuilder unorderedListItem(UnorderedListItem listItem)
 	{
 		addItem(listItem);
 		return this;
