@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.cube.storm.ui.model.list.StandardListItem;
 import com.cube.storm.ui.model.property.BundleImageProperty;
+import com.cube.storm.ui.model.property.ImageDescriptorProperty;
 import com.cube.storm.ui.model.property.InternalLinkProperty;
 import com.cube.storm.ui.model.property.TextProperty;
 
@@ -47,7 +48,7 @@ public class StandardListItemBuilder
 	{
 		if (uri != null)
 		{
-			item.setImage(new BundleImageProperty(uri.toString()));
+			item.setImage(new BundleImageProperty(new ImageDescriptorProperty(uri.toString(), uri.toString(), uri.toString(), uri.toString())));
 		}
 
 		return this;
